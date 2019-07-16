@@ -30,22 +30,20 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
   console.log('Dialogflow Request body: ' + JSON.stringify(request.body));
 
   userInputMessage = JSON.parse(JSON.stringify(request.body.queryResult.queryText));
-  dialogflowResponse = JSON.parse(JSON.stringify(request.body.queryResult.fulfillmentMessages.text.text[0])); 
+  dialogflowResponse = JSON.parse(JSON.stringify(request.body.queryResult.fulfillmentText)); 
 
   console.log('User input: ' + userInputMessage);
   console.log('DialogFlow response: ' + dialogflowResponse);
   
   //Añadimos los datos a la base de datos
   db.insertUserInput(userInputMessage);
-  db.insertDialogflowResponseQuery(dialogflowResponse);
   
   function welcome(agent) {
-    agent.add(`Welcome to my agent!`);
+    db.insertDialogflowResponseQuery(dialogflowResponse);
   }
  
   function fallback(agent) {
-    agent.add(`I didn't understand`);
-    agent.add(`I'm sorry, can you try again?`);
+    db.insertDialogflowResponseQuery(dialogflowResponse);
   }
   
 function pet(agent){
