@@ -9,7 +9,7 @@ const db=require('./config/databaseQuery');
 const facebookData=require('./config/facebookAPI');
 
 //conect db
-//db.connect();
+db.connect();
 
 //export db
 var userInputMessage = "";
@@ -30,14 +30,14 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
   console.log('Dialogflow Request body: ' + JSON.stringify(request.body));
 
   userInputMessage = JSON.parse(JSON.stringify(request.body.queryResult.queryText));
-  //dialogflowResponse = JSON.parse(JSON.stringify(request.body.queryResult.fulfillmentMessages.text.text[0])); 
+  dialogflowResponse = JSON.parse(JSON.stringify(request.body.queryResult.fulfillmentMessages.text.text[0])); 
 
   console.log('User input: ' + userInputMessage);
   console.log('DialogFlow response: ' + dialogflowResponse);
   
   //Añadimos los datos a la base de datos
-  //db.insertUserInput(userInputMessage);
-  //db.insertDialogflowResponseQuery(dialogflowResponse);
+  db.insertUserInput(userInputMessage);
+  db.insertDialogflowResponseQuery(dialogflowResponse);
   
   function welcome(agent) {
     agent.add(`Welcome to my agent!`);
@@ -53,7 +53,7 @@ function pet(agent){
 }
 
 function menu(agent){
-  //db.insertDialogflowResponseQuery(dialogflowResponse);
+  db.insertDialogflowResponseQuery(dialogflowResponse);
   agent.add(restaurantName);
   agent.add(new Card({
            title: `Title: Menu del restaurant`,
@@ -67,27 +67,27 @@ function menu(agent){
 
 
 function contact(agent){
-  //db.insertDialogflowResponseQuery(dialogflowResponse);
+  db.insertDialogflowResponseQuery(dialogflowResponse);
 }
 
 function discount(agent){
-  //db.insertDialogflowResponseQuery(dialogflowResponse);
+  db.insertDialogflowResponseQuery(dialogflowResponse);
 }
 
 function help(agent){
-  //db.insertDialogflowResponseQuery(dialogflowResponse);
+  db.insertDialogflowResponseQuery(dialogflowResponse);
 }
 
 function service(agent){
-  //db.insertDialogflowResponseQuery(dialogflowResponse);
+  db.insertDialogflowResponseQuery(dialogflowResponse);
 }
 
 function schedule(agent){
-  //db.insertDialogflowResponseQuery(dialogflowResponse);
+  db.insertDialogflowResponseQuery(dialogflowResponse);
 }
 
 function thanks(agent){
-  //db.insertDialogflowResponseQuery(dialogflowResponse);
+  db.insertDialogflowResponseQuery(dialogflowResponse);
 }
 
 function reserve(agent){
