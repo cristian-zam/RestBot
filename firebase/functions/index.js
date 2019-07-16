@@ -68,6 +68,7 @@ function menu(agent){
 
 function contact(agent){
   db.insertDialogflowResponseQuery(dialogflowResponse);
+  
 }
 
 function discount(agent){
